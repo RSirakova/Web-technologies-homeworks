@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">	
+<link rel="stylesheet" href="style.css">
+	<script defer src="validate.js"></script>
+<body>
+
+<div id="content">  
+	<div class="form_border">
+	  <form id='form'>
+			<!--Всички полета са задължителни-->
+				<div class="input_grp">
+					<!--Потребителско име с дължина между 3 и 20 символа-->
+					<input type="text" id='username' class='fild' name="username" placeholder="Потребителско име">
+					<div class='error_border'><p class='error_msg'></p></div>
+				</div>
+				<div class="input_grp">
+					<!--Парола с дължина по-голяма или равна на 6 и по-малка или равна на 20, включваща поне една голяма буква, поне една малка буква и поне една цифра.-->
+					<input type="password" id='pass' class='fild' name="pass" placeholder="Парола">
+					<div class='error_border'><p class='error_msg'></p></div>
+					
+				</div>
+				<div class="input_grp">
+					<!--телефон, който може да бъде в един от следните формати: 
+						(123) 456-7890
+						(123)456-7890
+						123-456-7890
+						123.456.7890
+						1234567890
+						+31636363634
+						075-63546725
+						-->
+					<input type="text" id='phone' class='fild' name="phone" placeholder="Телефон">	
+					<div class='error_border'><p class='error_msg'></p></div>
+				</div>
+				<div class="input_grp">
+					<!--Валиден формат на имейл адрес..-->
+					<input type="text" id='email' class='fild' name="email" placeholder="Имейл адрес">
+					<div class='error_border'><p class='error_msg'></p></div>
+				</div>
+				<div class="input_grp" id='select'>
+					<select id="owner" class='fild' name="owner">
+						<option value="Собственик">Собственик</option>
+						<option value="Наемател">Наемател</option>
+					</select>	
+				</div>
+				<div class="input_grp">	
+					<!--Положително цяло число по-малко от 500(??)..-->					
+					<input type="text" id='apartment_number' class='fild' name="apartment_number" placeholder="Номер на апартамент">
+					<div class='error_border'><p class='error_msg'></p></div>
+				</div>
+				<div class="input_grp">
+					<button id='but_reg' class='fild' type="submit" name="upload">Регистрирай ме!</button>
+				</div>
+				<div>
+				<p id='success_msg'></p>
+				</div>
+	  </form>
+	  </div>
+	</div>
+    
+</body>
+</html>

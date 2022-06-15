@@ -1,0 +1,120 @@
+	/* Размерите са взети от качените изображения. */
+
+body{
+	background-color:rgb(222, 253, 241); 
+	font-size:7px;
+}
+
+#select{
+	margin-bottom:12px;
+}
+
+#content{
+	width:549px;
+	height:579px;
+	padding-left:73px;
+	padding-top:65px;
+}
+.form_border{
+	width:400px;
+	padding-left:31px;
+	padding-top:31px;
+	padding-bottom:31px;
+	border-width:2px;
+	border-style:solid;
+	border-color:rgb(66, 125, 35);
+}
+
+#but_reg:hover{
+  background-color:rgb(85, 141, 61);
+  border-color:rgb(207, 231, 217);
+  color:rgb(207, 231, 217);
+ 
+}
+
+#but_reg{
+	background-color:rgb(207, 231, 217);
+	border-color:rgb(187, 201, 186);
+	color:rgb(85, 141, 61);
+}
+input{
+	color:rgb(168,168,168);
+}
+input, select,.error_border_active,#success{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+     box-sizing: border-box;
+}
+.fild{
+	width:359px;
+	height:34px;
+	padding-left:8px;
+	border-width:2px;
+	border-style:solid;
+	border-color:rgb(172, 182, 169);
+}
+
+
+.input_grp{
+	margin-bottom:12px;
+}
+
+.error_fild{
+	width:359px;
+	height:34px;
+	padding-left:8px;
+	border-width:2px;
+	border-style:solid;
+	border-color:rgb(176, 112, 109);
+}
+
+
+.success_fild{
+	width:359px;
+	height:34px;
+	padding-left:8px;
+	border-width:2px;
+	border-style:solid;
+	border-color:rgb(66, 125, 35);
+}
+
+.error_msg{
+	
+	color:rgb(255, 255, 255);
+	font-size:14px;	
+	margin-top:8px;
+	margin-left:8px;
+
+}
+.error_border_active{
+
+	margin-top:12px;
+	height:34px;
+	width:359px;
+	border-width:2px;
+	border-style:solid;
+	border-color:rgb(176, 112, 109);
+	background-color:rgb(176, 112, 109);
+}
+
+#success_msg{
+	text-align:center;
+	color:rgb(207, 231, 217);
+	font-size:14px;	
+	margin-top:8px;
+
+}
+
+.success_border_active{
+	margin-bottom:12px;
+	height:34px;
+	width:359px;
+	border-width:2px;
+	border-style:solid;
+	background-color:rgb(85, 141, 61);
+	border-color:rgb(207, 231, 217);
+}
+
+.fild:hover,.success_fild:hover,.error_fild:hover{
+	border-color:rgb(66, 125, 35);
+}
