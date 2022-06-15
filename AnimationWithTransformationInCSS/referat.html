@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang='bg'>
+<head>
+	<title>Анимации с CSS с използване на трансформации</title>
+	
+	<script src="script.js"></script>
+	<meta charset='utf-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href='style.css' rel='stylesheet'>
+
+	<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,700;1,800&display=swap" rel="stylesheet">
+</head>
+
+<body onload="main()">
+	<div class='menu'>
+		<ul>
+		  <li class='menuItem'><a  class='menuHref' href="#meaning">Същност</a></li>
+		  <li class='menuItem'><a  class='menuHref' href="#AnimatingTransforms">Анимиране</a>
+		  	<ul>
+				 <li class='menuItem'><a  class='menuHref' href="#transition-property">transition-property</a></li>
+				 <li class='menuItem'><a  class='menuHref' href="#transition-duration">transition-duration</a></li>
+				  <li class='menuItem'><a  class='menuHref' href="#transition-timing-function">transition-timing-function</a></li>
+			</ul>
+			</li>
+		  <li class='menuItem'><a class='menuHref' href="#transform">Свойство <br>transform</a></li>
+		  <li class='menuItem'><a class='menuHref' href="#scale">Мащабиране</a>
+			<ul>
+				 <li class='menuItem'><a  class='menuHref' href="#scale()">scale()</a></li>
+				 <li class='menuItem'><a  class='menuHref' href="#scaleX()">scaleX()</a></li>
+				  <li class='menuItem'><a  class='menuHref' href="#scaleY()">scaleY()</a></li>
+				  <li class='menuItem'><a  class='menuHref' href="#scaleZ()">scaleZ()</a></li>
+				  <li class='menuItem'><a  class='menuHref' href="#scale3d()">scale3D()</a></li>
+			</ul>
+		  </li>
+
+		  <li class='menuItem'><a class='menuHref' href="#rotate">Завъртане</a>
+				<ul>
+					 <li class='menuItem'><a  class='menuHref' href="#rotate()">rotate()</a></li>
+					 <li class='menuItem'><a  class='menuHref' href="#rotateX()">rotateX()</a></li>
+					  <li class='menuItem'><a  class='menuHref' href="#rotateY()">rotateY()</a></li>
+					  <li class='menuItem'><a  class='menuHref' href="#rotateZ()">rotateZ()</a></li>
+					  <li class='menuItem'><a  class='menuHref' href="#rotate3d()">rotate3D()</a></li>
+				</ul>
+		  </li>
+		  <li class='menuItem'><a class='menuHref' href="#translate">Преместване</a>
+				<ul>
+					 <li class='menuItem'><a  class='menuHref' href="#translate()">translate()</a></li>
+					 <li class='menuItem'><a  class='menuHref' href="#translateX()">translateX()</a></li>
+					  <li class='menuItem'><a  class='menuHref' href="#translateY()">translateY()</a></li>
+					  <li class='menuItem'><a  class='menuHref' href="#translateZ()">translateZ()</a></li>
+					  <li class='menuItem'><a  class='menuHref' href="#translate3d()">translate3D()</a></li>
+				</ul>
+		  </li>
+		  <li class='menuItem'><a class='menuHref' href="#skew">Накланяне</a>
+				<ul>
+					 <li class='menuItem'><a  class='menuHref' href="#skew()">skew()</a></li>
+					 <li class='menuItem'><a  class='menuHref' href="#skewX()">skewX()</a></li>
+					 <li class='menuItem'><a  class='menuHref' href="#skewY()">skewY()</a></li>
+				</ul>
+		  </li>
+		  <li class='menuItem'><a class='menuHref' href="#anotherProperties">Допълнителни свойства</a>
+			<ul>
+					 <li class='menuItem'><a  class='menuHref' href="#transform-origin">transform-origin</a></li>
+					 <li class='menuItem'><a  class='menuHref' href="#transform-style">transform-style</a></li>
+			</ul>
+		  </li>
+		   <li class='menuItem'><a  class='menuHref' href="#animationInAction">Анимация в действие</a></li>
+		  <li class='menuItem'><a class='menuHref' href="#sources">Използвани източници</a></li>
+		 </ul>
+	</div>
+	<div id="conteiner">
+		<div id='header'>Анимации с CSS с използване на трансформации</div>
+		<div id='content'>
+			<h2 id='meaning'>Същност на анимациите с трансформации в CSS</h2>	
+				<p>
+					Трансформациите в CSS дават възможност да променяме външния вид на елементите в браузър спрямо различни характеристики. Те ни позволяват да променяме размера на елементите, да ги изкривяваме или завъртаме. Анимациите използващи трансформации обикновено се задействат, при настъпване на някакво събитие например минаване или щракване с мишката върху елемента. Трансформации са приложими както в двумерното(2D), така и в тримерното пространство(3D). <br>
+					Има четири основни вида трансформации: <b>мащабиране(scale)</b>, <b>завъртане(rotate)</b>, <b>прeместване(translate)</b> и <b>накланяне(skew)</b>. 
+					Трансформациите в CSS са изключително мощен инстумент за разработчиците, но с добавянето на -webkit-transition анимациите придобиват по-вълнуващ вид. 
+				</p>
+				<p>
+					В <a href="#exampe1">Пример 1</a> е показано как се променя елемент след прилагане на всяка една от основните трансформации. За да се задейства трансформацията е необходимо да се премине с мишката върху съответния елемент. Информацията за примера е взета от <a href="#source1">[1]</a>.
+				</p>
+				<figure id="exampe1">
+					<div id="firstExample" >
+						<img alt="scaled image" id="box1" class='boxes' src="scale.png">
+						<img alt="rotated image" style="margin-left:28px;"  id="box2" class='boxes' src="rotate.png">
+						<img alt="translated image" style="margin-left:28px;" id="box3" class='boxes' src="translate.png">
+						<img alt="skewed image" style="margin-left:28px;" id="box4" class='boxes' src="skew.png">
+					</div>
+					<figcaption style="margin-top:1em;">Пример 1: Прилагане на основните трансформации в CSS.</figcaption>
+				</figure>	
+			
+				<h2 id='AnimatingTransforms'>Анимиране на трансформациите в CSS</h2>
+				<p>
+					Анимацията чрез преход(transition) е най-простият вид анимация, която можем да постигнем чрез CSS. Когато стойността на CSS свойството се променя, визуализираният резултат се актуализира незабавно, като въпросният елемент се променя от старата стойност към новата стойност на свойството. Преходите описват изпълнението на анимация от старото състояние към новото състояние с течение на времето. <br>
+					Преходите се реализират, чрез краткия запис transition или чрез използване на следните свойства:
+				</p>
+				<h3 id='transition-property'> transition-property </h3>
+				
+					Указва се кое свойство трябва да анимира, например непрозрачност, цвят.<br>
+					Синтаксис:
+								<div style="height:2em;
+									margin-left:15%;
+									margin-right:15%;
+									text-align:center;
+									background-color:#000033;width:60%;
+									box-shadow: 10px 10px 5px grey;
+									border-radius: 12px"><pre class="syntax">  transition-property: </pre></div>
+								<ul>
+									<li>
+										Едно <b>конкретно свойство</b> например color
+									</li>
+									<li>
+										Множество от <b>свойства</b> разделени със запетая color, width.
+									</li>
+									<li>
+										Ключовата дума <b>none</b>, което показва, че нито едно свойство няма да се промени.
+									</li>
+									<li>
+										Ключовата дума <b>all</b>, която показва, че всички свойства ще се променят (по подразбиране).
+									</li>
+								</ul>
+				
+				<h3 id='transition-duration'> transition-duration  </h3>
+			
+					Указва се колко дълго ще продължи прехода.<br>
+					Синтаксис:
+									<div style="height:2em;
+									margin-left:15%;
+									margin-right:15%;
+									text-align:center;
+									background-color:#000033;width:60%;
+									box-shadow: 10px 10px 5px grey;
+									border-radius: 12px"><pre class="syntax"> transition-duration:</pre></div>
+								<ul>
+									<li>
+										<b>time</b> - Указва колко секунди или милисекунди отнема даден ефект на прехода. По подразбиране е 0s.
+									</li>
+									<li>
+										<b>initial</b> - Задава свойството по подразбиране. 
+									</li>
+									<li>
+										<b>inherit</b> - Наследява свойството от родителсия елемент.
+									</li>				
+								</ul>
+			
+					<h3 id='transition-timing-function'> transition-timing-function </h3>
+				
+					Указва функция за разпределение на прехода във времето.<br>
+					Синтаксис:
+								<div style="height:2em;
+									margin-left:15%;
+									margin-right:15%;
+									text-align:center;
+									background-color:#000033;width:60%;
+									box-shadow: 10px 10px 5px grey;
+									border-radius: 12px"><pre class="syntax">transition-timing-function:</pre></div>
+								<ul>
+									<li>
+										<b>linear</b> - Задава ефект на преход със същата скорост от началото до края.
+									</li>
+									<li>
+										<b>ease</b> - Стойност по подразбиране. Задава преходен ефект с бавен старт, след това бърз, след което завършва бавно.
+									</li>
+									<li>
+										<b>ease-in</b> - Задава преходен ефект с бавен старт.
+									</li>		
+									<li>
+										<b>ease-out</b> - Задава преходен ефект с бавен край.
+									</li>				
+									<li>
+										<b>ease-in-out</b> - Задава ефект на преход с бавен старт и край.
+									</li>
+									<li>
+										<b>steps(int,start|end)</b> - Задава стъпкова функция с два параметъра. Първият параметър указва броя на интервалите във функцията. Трябва да е положително цяло число (по-голямо от 0). Вторият параметър, който не е задължителен, е или стойността "start" или "end" и указва точката, в която промяната на стойностите настъпва в рамките на интервала. Ако вторият параметър е пропуснат, той получава стойността "end".
+									</li>	
+									<li>
+										<b>step-start</b> - Еквивалентно на  steps(1, start).
+									</li>					
+									<li>
+										<b>step-end</b> - Еквивалентно на  steps(1, end).
+									</li>		
+									<li>
+										<b>cubic-bezier(n,n,n,n)</b> - Дефиниране на собствена cubic-bezier фукция, като допустимите стойности за n са от 0 до 1.
+									</li>		
+									<li>
+										<b>initial</b> - Задава свойството по подразбиране. 
+									</li>
+									<li>
+										<b>inherit</b> - Наследява свойството от родителсия елемент.
+									</li>										
+								</ul>
+				
+				<p>
+					В <a href="#example2">Пример 2</a> е показано действието на <b> transition-property, transition-duration и transition-timing-function </b>. Информацията за примера е взета от <a href='#source5'>[5]</a>.
+				</p>
+				<figure id="example2">
+				<div class="row">
+					  <div class="column" style="background-color:#000033;width:60%;height:300px;">
+							<h2 class="code">CSS</h2>
+					<pre class="code">
+#transition-example {
+transition-property: opacity;
+transition-duration: 3s;
+ transition-timing-function: ease-in-out;
+}
+
+#transition-example:hover {
+ opacity: 0;
+}					</pre>
+					  </div>
+					  <div  class="column" style="background-color:#000033;width:40%;height:300px;">
+						<h2 class="code">Пример</h2>
+						<p style='text-align:center;'><img alt="square for transition example" id='transition-example'  class="square" src="transitionExample.png"></p>
+					  </div>
+				</div>	
+				<figcaption>Пример 2: Прилагане на transition.</figcaption>
+				</figure>
+				<h2 id='transform'>Свойство transform</h2>
+				<p>
+						В CSS свойството <b>transform</b> се използва за промяна на елементи в 2D или 3D пространството.<br>
+						Синтаксис:
+				</p>	
+						<div style="height:2em;
+									margin-left:15%;
+									margin-right:15%;
+									text-align:center;
+									background-color:#000033;width:60%;
+									box-shadow: 10px 10px 5px grey;
+									border-radius: 12px"><pre class="syntax">transform: none | transform-function [ transform-function ]*</pre></div> 
+
+			
+					<h3 id='scale'> Мащабиране </h3>
+			
+						<h4 id='scale()'>scale()</h4>
+							<p>
+								<b>Описание: </b> Функцията има влияние върху размера на елемент. Влияе върху размера на шрифта, височината, ширината, както и за свободното пространство около съдържанието на обект, оцветено с фона на обекта - така нареченият padding. Тази функция е съкратен вариант на <b><a href="#scaleX()">scaleX()</a></b> и <b><a href="#scaleY()">scaleY()</a></b>, които приемат само един аргумент и са свързани със мащабиране по съответно оста X и по оста Y.
+							</p>
+							
+								Синтаксис:
+								<div style="height:2em;
+									margin-left:15%;
+									margin-right:15%;
+									text-align:center;
+									background-color:#000033;width:60%;
+									box-shadow: 10px 10px 5px grey;
+									border-radius: 12px"><pre class="syntax">scale() = scale( number [, number ?] )</pre></div>
+								<ul>
+									<li>
+										number е цяло или дробно число
+									</li>
+								</ul>
+							
+							<p>
+								В <a href="#example3">Пример 3</a> е показано действието на <b>scale()</b>. Идеята за него е взета от <a href="#source2">[2]</a>.
+							</p>
+<figure id="example3">
+				<div class="row">
+					  <div class="column" style="background-color:#000033;width:60%;height:300px;">
+							<h2 class="code">CSS</h2>
+					<pre class="code">
+ .scaledImage,.image
+ { 	
+   height: 100px;
+   width: 100px;		
+ }
+ .scaledImage
+ {
+   transform: scale(1.8,1.4);
+ }				</pre>
+					  </div>
+					  <div class="column" style="background-color:#000033;width:40%;height:300px;">
+						<h2 class="code">Пример</h2>
+							<div class="rowImage">
+						  <div class="columnImage">
+							<img alt="original image" src="image.png" class="scaledImages">
+						  </div>
+						  <div class="columnImage">
+							<img alt="scaled image" src="image.png" id="scaledImage" class="scaledImages">	
+						  </div>
+						</div>
+					  </div>
+				</div>	
+				<figcaption>Пример 3: Прилагане на scale().</figcaption>
+				</figure>
+			<h4 id='scaleX()'>scaleX()</h4>
+								<p>
+									<b>Описание: </b> Функцията мащабира елемент по оста X. Мащабирането зависи от числото подадено като аргумент.
+								</p>
+								
+									Синтаксис:
+									<div style="height:2em;
+									margin-left:15%;
+									margin-right:15%;
+									text-align:center;
+									background-color:#000033;width:60%;
+									box-shadow: 10px 10px 5px grey;
+									border-radius: 12px"><pre class="syntax">scaleX() = scaleX( number )</pre></div>
+										<ul>
+											<li>
+												number е цяло или дробно число
+											</li>
+										</ul>
+								
+								<p>
+									В <a href="#example4">Пример 4</a> е показано действието на <b>scaleX()</b>. Идеята за него е взета от <a href="#source2">[2]</a>.
+								</p>
+							<figure id="example4">
+				<div class="row">
+					  <div class="column" style="background-color:#000033;width:60%;height:300px;">
+							<h2 class="code">CSS</h2>
+					<pre class="code">
+ .scaledXImage,.image
+ { 	
+   height: 100px;
+   width: 100px;		
+ }
+ .scaledXImage
+ {
+   transform: scaleX(2);
+ }			</pre>
+					  </div>
+					  <div class="column" style="background-color:#000033;width:40%;height:300px;">
+						<h2 class="code">Пример</h2>
+							<div class="rowImage">
+						  <div class="columnImage">
+							<img alt="original image" src="image.png" class="scaledImages">
+						  </div>
+						  <div class="column">
+							<img alt="scaled image" src="image.png" id="scaledXImage" class="scaledImages">	
+						  </div>
+						</div>
+					  </div>
+				</div>	
+				<figcaption>Пример 4: Прилагане на scaleX().</figcaption>
+				</figure>
+				<h4 id='scaleY()'>scaleY()</h4>
+									<p>
+										<b>Описание: </b> Функцията мащабира елемент по оста Y. Мащабирането зависи от числото подадено като аргумент.
+									</p>
+									
+									Синтаксис:
+									<div style="height:2em;
+									margin-left:15%;
+									margin-right:15%;
+									text-align:center;
+									background-color:#000033;width:60%;
+									box-shadow: 10px 10px 5px grey;
+									border-radius: 12px"><pre class="syntax">scaleY() = scaleY( number )</pre></div>
+									<ul>
+										<li>
+											number е цяло или дробно число
+										</li>
+									</ul>
+									
+									<p>
+										В <a href="#example5">Пример 5</a> е показано действието на <b>scaleY()</b>. Идеята за него е взета от <a href="#source2">[2]</a>.
+									</p>
+									<figure id="example5">
+				<div class="row">
+					  <div class="column" style="background-color:#000033;width:60%;height:300px;">
+							<h2 class="code">CSS</h2>
+					<pre class="code">
+ .scaledYImage,.image
+ { 	
+   height: 100px;
+   width: 100px;		
+ }
+ .scaledYImage
+ {
+   transform: scaleY(2);
+ }		</pre>
+					  </div>
+					  <div class="column" style="background-color:#000033;width:40%;height:300px;">
+						<h2 class="code">Пример</h2>
+							<div class="rowImage">
+						  <div class="columnImage">
+							<img alt="original image" src="image.png" class="scaledImages">
+						  </div>
+						  <div class="column">
+							<img alt="scaled image" src="image.png" id="scaledYImage" class="scaledImages">	
+						  </div>
+						</div>
+					  </div>
+				</div>	
+				<figcaption>Пример 5: Прилагане на scaleY().</figcaption>
+				</figure>
+				<h4 id='scaleZ()'>scaleZ()</h4>
+									<p>
+									<b>Описание: </b> Функцията мащабира елемент по оста Z. Мащабирането зависи от числото подадено като аргумент.
+									</p>
+									
+									Синтаксис:
+									<div style="height:2em;
+									margin-left:15%;
+									margin-right:15%;
+									text-align:center;
+									background-color:#000033;width:60%;
+									box-shadow: 10px 10px 5px grey;
+									border-radius: 12px"><pre class="syntax">scaleZ() = scaleZ( number )</pre></div>
+									<ul>
+											<li>
+												number е цяло или дробно число
+											</li>
+										</ul>
+									
+									<p>
+										В <a href="#example6">Пример 6</a> е показано действието на <b>scaleZ()</b>. За по-доброто демонстриране на примера е променена перспективата и елементът е завъртян. Идеята за него е взета от <a href="#source2">[2]</a>.
+									</p>
+														<figure id="example6">
+				<div class="row">
+					  <div class="column" style="background-color:#000033;width:60%;height:300px;">
+							<h2 class="code">CSS</h2>
+					<pre class="code">
+.scaledZImage,.image
+ { 	
+   height: 100px;
+   width: 100px;		
+ }
+ .scaledZImage
+ {
+  transform: perspective(500px)
+             scaleZ(5)
+             rotateX(45deg);
+ }		</pre>
+					  </div>
+					  <div class="column" style="background-color:#000033;width:40%;height:300px;">
+						<h2 class="code">Пример</h2>
+							<div class="rowImage">
+						  <div class="columnImage">
+							<img alt="original image" src="image.png" class="scaledImages">
+						  </div>
+						  <div class="column">
+							<img alt="scaled image" src="image.png" id="scaledZImage" class="scaledImages">	
+						  </div>
+						</div>
+					  </div>
+				</div>	
+				<figcaption>Пример 6: Прилагане на scaleZ().</figcaption>
+				</figure>
+				<h4 id='scale3d()'>scale3d()</h4>
+									<p>
+									<b>Описание: </b> Функцията scale3d () мащабира елемент въз основа на числата, които са подадени като аргумент. 
+									</p>
+									
+									Синтаксис:
+									<div style="height:2em;
+									margin-left:15%;
+									margin-right:15%;
+									text-align:center;
+									background-color:#000033;width:60%;
+									box-shadow: 10px 10px 5px grey;
+									border-radius: 12px"><pre class="syntax">scale3d() = scale3d( number, number, number )</pre></div>
+									<ul>
+											<li>
+												number е цяло или дробно число
+											</li>
+									</ul>
+								
+									<p>
+										В <a href="#example7">Пример 7</a> е показано действието на <b>scale3d()</b>. За по-доброто демонстриране на примера е променена перспективата и елементът е завъртян. Идеята за него е взета от <a href="#source2">[2]</a>.
+									</p>
+																			<figure id="example7">
+				<div class="row">
+					  <div class="column" style="background-color:#000033;width:60%;height:310px;">
+							<h2 class="code">CSS</h2>
+					<pre class="code">
+ .scaled3dImage,.image
+ { 	
+   height: 100px;
+   width: 100px;			
+   margin-right:50px;
+ }
+ .scaled3dImage
+ {
+   transform: perspective(500px)
+	      scale3d(1.5,1.5,7)
+	      rotateX(45deg);
+ }		</pre>
+					  </div>
+					  <div class="column" style="background-color:#000033;width:40%;height:310px;">
+						<h2 class="code">Пример</h2>
+							<div class="rowImage">
+						  <div class="columnImage">
+							<img alt="original image" src="image.png" class="scaledImages">
+						  </div>
+						  <div class="column">
+							<img alt="scaled image" src="image.png" id="scaled3dImage" class="scaledImages">	
+						  </div>
+						</div>
+					  </div>
+				</div>	
+				<figcaption>Пример 7: Прилагане на scale3d().</figcaption>
+				</figure>
+				
+								<h3 id="rotate">Завъртане</h3>
+			
+						<h3 id='rotate()'>rotate()</h3>
+									<p>
+									<b>Описание: </b> Фунцията се използва за завъртане на елемент. Приема като аргументи градусите, на които искаме да завъртим елемента. При положителни стойности, завъртането става по посока на часовниковата стрелка, а при отрицателни - в посока обратна на часовниковата стрелка.
+									</p>
+									
+										Синтаксис:
+								<div style="height:2em;
+									margin-left:15%;
+									margin-right:15%;
+									text-align:center;
+									background-color:#000033;width:60%;
+									box-shadow: 10px 10px 5px grey;
+									border-radius: 12px"><pre class="syntax">rotate() = rotate(angle)</pre></div>
+								<ul>
+											<li>angle - стойност, представляваща ъгъла на въртене.
+												<br> Ъгълът може да бъде представен с всяка от следните мерни единици:
+												<ul>
+													<li>deg - Градуси - в пълен кръг има 360<sup>o</sup></li>
+													<li>grad - Градиани - в пълен кръг има 400 градиана</li>
+													<li>rad - Радиани - 360<sup>o</sup> = 2.π.rad</li>
+													<li>turn - Обороти - в пълен кръг има 1 оборот</li>
+												</ul>
+
+												</li>
+										</ul>
+							
+								<p>
+										В <a href="#example8">Пример 8</a> е показано действието на <b>rotate()</b>. Идеята за него е взета от <a href="#source2">[2]</a>.
+									</p>
+<figure id="example8">
+				<div class="row">
+					  <div class="column" style="background-color:#000033;width:65%;">
+							<h2 class="code">CSS</h2>
+					<pre class="code">
+#rotatedSquare
+ {
+  margin-left:10px;
+  margin-right:10px;
+  display: inline-block;
+  background: linear-gradient(180deg,#ff8a00,#e52e71);
+  height: 100px;
+  width: 100px;
+  color: white;	 
+  text-align:center;  
+  line-height: 120px;
+ }
+ #rotatedSquare
+ {
+  animation: rotate 3s infinite;
+  animation-direction: alternate;
+ }
+ @keyframes rotate 
+ {
+  0% {
+    transform: rotate(0deg);    
+  }
+  100% {
+    transform: rotate(45deg);
+  }
+ }				</pre>
+					  </div>
+					  <div class="column" style="background-color:#000033;width:35%;">
+						<h2 class="code">Пример</h2>
+							<p style='text-align:center;'><img  alt="rotate square" class='square'  id='rotatedSquare' src="rotate().png"></p>
+					  </div>
+				</div>	
+				<figcaption>Пример 8: Прилагане на rotate().</figcaption>
+				</figure>
+			<h4 id='rotateX()'>rotateX()</h4>
+									<p><b>Описание: </b> При тримерно пространство можем да използваме функцията <b>rotateX()</b>. Използва се за въртене на елемент по оста X. Функцията <b>rotateX(angle)</b> е еквивалента на <b>rotate3d(1,0,0,angle)</b>;
+									</p>
+								
+									Синтаксис:
+									<div style="height:2em;
+									margin-left:15%;
+									margin-right:15%;
+									text-align:center;
+									background-color:#000033;width:60%;
+									box-shadow: 10px 10px 5px grey;
+									border-radius: 12px"><pre class="syntax">rotateX() = rotateX(angle)</pre></div>
+										<ul>
+											<li>angle - стойност, представляваща ъгъла на въртене.
+												<br> Ъгълът може да бъде представен с всяка от следните мерни единици:
+												<ul>
+													<li>deg - Градуси - в пълен кръг има 360<sup>o</sup></li>
+													<li>grad - Градиани - в пълен кръг има 400 градиана</li>
+													<li>rad - Радиани - 360<sup>o</sup> = 2.π.rad</li>
+													<li>turn - Обороти - в пълен кръг има 1 оборот</li>
+												</ul>
+
+												</li>
+										</ul>
+									
+									<p>
+										В <a href="#example9">Пример 9</a> е показано действието на <b>rotateX()</b>.  Идеята за него е взета от <a href="#source2">[2]</a>.
+									</p>
+							<figure id="example9">
+				<div class="row">
+					  <div class="column" style="background-color:#000033;width:65%;">
+							<h2 class="code">CSS</h2>
+					<pre class="code">
+ #rotatedXSquare
+ { 
+  margin-left:10px;
+  margin-right:10px;
+  display: inline-block;
+  background: linear-gradient(180deg,#ff8a00,#e52e71);
+  height: 100px;
+  width: 100px;
+  color: white;	 
+  text-align:center;  
+  line-height: 120px;
+ }
+ #rotatedXSquare
+ {
+  animation: rotate 3s infinite;
+  animation-direction: alternate;
+ }
+ @keyframes rotateX 
+ {
+  0% {
+    transform: rotateX(0deg);    
+  }
+  100% {
+    transform: rotateX(45deg);
+  }
+ }		</pre>
+					  </div>
+					  <div class="column" style="background-color:#000033;width:35%;">
+						<h2 class="code">Пример</h2>
+							<p style="text-align:center;"><img alt="rotateX square" class='square'  id='rotatedXSquare' src="rotateX().png"></p>
+					  </div>
+				</div>	
+				<figcaption>Пример 8: Прилагане на rotateX()().</figcaption>
+				</figure>
+			
+				<h4 id='rotateY()'>rotateY()</h4>
+					<p><b>Описание: </b> При тримерно пространство можем да използваме функцията <b>rotateY()</b>. Използва се за въртене на елемент по оста Y. Функцията <b>rotateY(angle)</b> е еквивалента на <b>rotate3d(0,1,0,angle)</b>;
+					</p>
+									Синтаксис:
+									<div style="height:2em;
+									margin-left:15%;
+									margin-right:15%;
+									text-align:center;
+									background-color:#000033;width:60%;
+									box-shadow: 10px 10px 5px grey;
+									border-radius: 12px"><pre class="syntax">rotateY() = rotateY(angle)</pre></div>
+									<ul>
+											<li>angle - стойност, представляваща ъгъла на въртене.
+												<br> Ъгълът може да бъде представен с всяка от следните мерни единици:
+												<ul>
+													<li>deg - Градуси - в пълен кръг има 360<sup>o</sup></li>
+													<li>grad - Градиани - в пълен кръг има 400 градиана</li>
+													<li>rad - Радиани - 360<sup>o</sup> = 2.π.rad</li>
+													<li>turn - Обороти - в пълен кръг има 1 оборот</li>
+													
+												</ul>
+
+											</li>
+										</ul>
+									
+									<p>
+										В <a href="#example10">Пример 10</a> е показано действието на <b>rotateY()</b>. 
+									</p>
+									<figure id="example10">
+				<div class="row">
+					  <div class="column" style="background-color:#000033;width:65%;">
+							<h2 class="code">CSS</h2>
+					<pre class="code">
+ #rotatedYSquare
+ {
+  margin-left:10px;
+  margin-right:10px;
+  display: inline-block;
+  background: linear-gradient(180deg,#ff8a00,#e52e71);
+  height: 100px;
+  width: 100px;
+  color: white;	 
+  text-align:center;  
+  line-height: 120px;
+ }
+ #rotatedYSquare
+ {
+  animation: rotate 3s infinite;
+  animation-direction: alternate;
+ }
+ @keyframes rotateY
+ {
+  0% {
+    transform: rotateY(0deg);    
+  }
+  100% {
+    transform: rotateY(45deg);
+  }
+ }	</pre>
+					  </div>
+					  <div class="column" style="background-color:#000033;width:35%;">
+						<h2 class="code">Пример</h2>
+							<p style='text-align:center;'><img style="text-align:center;" alt="rotateY square" class='square'  id='rotatedYSquare' src="rotateY().png"></p>
+					  </div>
+				</div>	
+				<figcaption>Пример 10: Прилагане на rotateY().</figcaption>
+				</figure>
+			<h4 id='rotateZ()'>rotateZ()</h4>
+									<p><b>Описание: </b> При тримерно пространство можем да използваме функцията <b>rotateZ()</b>. Използва се за въртене на елемент по оста Z. Функцията <b>rotateZ(angle)</b> е еквивалента на <b>rotate3d(0,0,1,angle)</b>;
+									</p>
+									
+									Синтаксис:
+									<div style="height:2em;
+									margin-left:15%;
+									margin-right:15%;
+									text-align:center;
+									background-color:#000033;width:60%;
+									box-shadow: 10px 10px 5px grey;
+									border-radius: 12px"><pre class="syntax">rotateZ() = rotateZ(angle)</pre></div>
+									<ul>
+											<li>angle - стойност, представляваща ъгъла на въртене.
+												<br> Ъгълът може да бъде представен с всяка от следните мерни единици:
+												<ul>
+													<li>deg - Градуси - в пълен кръг има 360<sup>o</sup></li>
+													<li>grad - Градиани - в пълен кръг има 400 градиана</li>
+													<li>rad - Радиани - 360<sup>o</sup> = 2.π.rad</li>
+													<li>turn - Обороти - в пълен кръг има 1 оборот</li>
+													
+												</ul>
+
+											</li>
+										</ul>
+									
+										<p>
+										В <a href="#example11">Пример 11</a> е показано действието на <b>rotateZ()</b>. Идеята за него е взета от <a href="#source2">[2]</a>.
+									</p>
+									<figure id="example11">
+				<div class="row">
+					  <div class="column" style="background-color:#000033;width:65%;">
+							<h2 class="code">CSS</h2>
+					<pre class="code">
+ #rotatedZSquare
+ {
+  margin-left:10px;
+  margin-right:10px;
+  display: inline-block;
+  background: linear-gradient(180deg,#ff8a00,#e52e71);
+  height: 100px;
+  width: 100px;
+  color: white;	 
+  text-align:center;  
+  line-height: 120px;
+ }
+ #rotatedZSquare
+ {
+  animation: rotate 3s infinite;
+  animation-direction: alternate;
+ }
+ @keyframes rotateZ
+ {
+  0% {
+    transform: rotateZ(0deg);    
+  }
+  100% {
+    transform: rotateZ(45deg);
+  }
+ }	</pre>
+					  </div>
+					  <div class="column" style="background-color:#000033;width:35%;">
+						<h2 class="code">Пример</h2>
+							<p style='text-align:center;'><img style="text-align:center;" alt="rotateZ square" class='square'  id='rotatedZSquare' src="rotateZ().png"></p>
+						</div>
+					  </div>
+				<figcaption>Пример 11: Прилагане на rotateZ().</figcaption>
+				</figure>
+				
+					<h4 id='rotate3d()'>rotate3d()</h4>
+									<p><b>Описание: </b> При тримерно пространство можем да използваме функцията <b>rotate3d()</b>. Използва се за въртене на елемент по oсите X, Y и Z. Може да се посочат осите/оста на въртене, като се изполва число за първите три аргумента. Четвъртият аргумент определя ъгъла на въртене.
+									</p>
+									
+									Синтаксис:
+									<div style="height:2em;
+									margin-left:15%;
+									margin-right:15%;
+									text-align:center;
+									background-color:#000033;width:60%;
+									box-shadow: 10px 10px 5px grey;
+									border-radius: 12px"><pre class="syntax">rotate3d() = rotate3d(x, y, z, angle)</pre></div>
+									<ul>
+											<li>x - рационално число описващо x-координатата на вектора, обозначаваща оста на въртене. </li>
+											<li>y - рационално число описващо y-координатата на вектора, обозначаваща оста на въртене. </li>
+											<li>z - рационално число описващо z-координатата на вектора, обозначаваща оста на въртене. </li>
+											<li>angle - стойност, представляваща ъгъла на въртене.
+												<br> Ъгълът може да бъде представен с всяка от следните мерни единици:
+												<ul>
+													<li>deg - Градуси - в пълен кръг има 360<sup>o</sup></li>
+													<li>grad - Градиани - в пълен кръг има 400 градиана</li>
+													<li>rad - Радиани - 360<sup>o</sup> = 2.π.rad</li>
+													<li>turn - Обороти - в пълен кръг има 1 оборот</li>
+												</ul>
+
+											</li>
+										</ul>
+									
+										<p>
+										В <a href="#example12">Пример 12</a> е показано действието на <b>rotate3d()</b>. Идеята за него е взета от <a href="#source2">[2]</a>.
+									</p>
+									<figure id="example12">
+				<div class="row">
+					  <div class="column" style="background-color:#000033;width:65%;">
+							<h2 class="code">CSS</h2>
+					<pre class="code">
+ #rotated3dSquare
+ {
+  margin-left:10px;
+  margin-right:10px;
+  display: inline-block;
+  background: linear-gradient(180deg,#ff8a00,#e52e71);
+  height: 100px;
+  width: 100px;
+  color: white;	 
+  text-align:center;  
+  line-height: 120px;
+ }
+ #rotated3dSquare
+ {
+  animation: rotate3d 3s infinite;
+  animation-direction: alternate;
+ }
+ @keyframes rotate3d
+ {
+  0% {
+    transform: rotate3d (1,1,1,0deg);    
+  }
+  100% {
+    transform: rotate3d(1,1,1,45deg);
+  }
+ }	</pre>
+					  </div>
+					  <div class="column" style="background-color:#000033;width:35%;">
+						<h2 class="code">Пример</h2>
+							<p style="text-align:center;"><img style="text-align:center;" alt="rotate3d square" class='square'  id='rotated3dSquare' src="rotate3d().png"></p>
+						</div>
+					  </div>
+					
+				<figcaption>Пример 12: Прилагане на rotate3d().</figcaption>
+				</figure>
+				
+									<h3 id='translate'>Преместване</h3>
+								<h4 id='translate()'>translate()</h4>
+									<p>
+										<b>Описание: </b> Използва се за преместване на елемент настрани, надолу или нагоре. Посоката на преместване се определя въз основа на подадените аргументи, като първият аргумент е преместването по оста X(хоризонтално,наляво-надясно), а вторият - по оста Y(вертикално,нагоре-надолу). Положителни стойности на X и Y преместват елемента надясно или надолу, а отрицателните стойности на X и Y преместват елемента наляво или нагоре. <br>
+										<b>translate()</b> е обощение на <b><a href="#translateX()">translateX()</a></b> и <b><a href="#translateY()">translateY()</a></b>.
+									</p>
+									
+										Синтаксис:
+											<div style="height:2em;margin-left:15%;margin-right:15%;text-align:center;background-color:#000033;width:70%;box-shadow: 10px 10px 5px grey;	border-radius: 12px"><pre class="syntax">translate() = translate( translation-value[,  translation-value ?] )</pre></div>
+									
+									<p>
+										Стойностите на аргументите на функцията са числа, те могат да бъдат във всяка една от мерните единици за дължина, използвани в CSS(пикслели, сантиметри и други).
+									</p>
+									<p>
+										В <a href="#example13">Пример 13</a> е показано действието на <b><a href="#translate()">translate()</a></b>. Идеята за него е взета от <a href="#source2">[2]</a>.
+									</p>
+	<figure id="example13">
+				<div class="row">
+					  <div class="column" style="background-color:#000033;width:60%;">
+							<h2 class="code">CSS</h2>
+					<pre class="code">
+ #translatedSquare
+ {
+  display: inline-block;
+  background: linear-gradient(180deg,#ff8a00,#e52e71);
+  height: 100px;
+  width: 100px;
+  color: white;
+  animation: move 3s infinite;
+  animation-direction: alternate;
+ }
+
+@keyframes move 
+{
+  0% {
+    transform: translate(0, 0);    
+  }
+  100% {
+    transform: translate(100px, 50px);
+  }
+}	</pre>
+					  </div>
+					  <div class="column" style="background-color:#000033;width:40%;">
+						<h2 class="code">Пример</h2>
+							<p><img alt="translate square" class='square'  id='translatedSquare' src="translate().png"></p>
+						</div>
+					  </div>
+					
+				<figcaption>Пример 13: Прилагане на translate().</figcaption>
+				</figure>
+								<h4 id='translateX()'>translateX()</h4>
+									<p>
+										<b>Описание: </b>Приема един аргумент - преместване по оста X.
+									</p>
+									
+										Синтаксис:
+										<div style="height:2em;margin-left:15%;margin-right:15%;text-align:center;background-color:#000033;width:60%;box-shadow: 10px 10px 5px grey;	border-radius: 12px"><pre class="syntax">translateX() = translateX( translation-value)</pre></div>
+									
+									<p>
+										Стойността на аргумента на функцията е число, то може да бъде във всяка една от мерните единици за дължина, използвани в CSS(пикслели, сантиметри и други).
+									</p>
+									<p>
+										В <a href="#example14">Пример 14</a> е показано действието на <b><a href="#translateX()">translateX()</a></b>. Идеята за него е взета от <a href="#source2">[2]</a>.
+									</p>
+		<figure id="example14">
+				<div class="row">
+					  <div class="column" style="background-color:#000033;width:60%;">
+							<h2 class="code">CSS</h2>
+					<pre class="code">
+ #translatedXSquare
+ {
+  display: inline-block;
+  background: linear-gradient(180deg,#ff8a00,#e52e71);
+  height: 100px;
+  width: 100px;
+  color: white;
+  animation: moveX 3s infinite;
+  animation-direction: alternate;
+  }
+
+@keyframes moveX {
+  0% {
+    transform: translateX(0);    
+  }
+  100% {
+    transform: translateX(80px);
+  }
+}	</pre>
+					  </div>
+					  <div class="column" style="background-color:#000033;width:40%;">
+						<h2 class="code">Пример</h2>
+							<p><img alt="translateX square" class='square'  id='translatedXSquare' src="translateX().png"></p>
+						</div>
+					  </div>
+					
+				<figcaption>Пример 14: Прилагане на translateX().</figcaption>
+				</figure>		
+					<h4 id='translateY()'>translateY()</h4>
+									<p>
+										<b>Описание: </b>Приема един аргумент - преместване по оста Y.
+									</p>
+									
+										Синтаксис:
+										<div style="height:2em;margin-left:15%;margin-right:15%;text-align:center;background-color:#000033;width:60%;box-shadow: 10px 10px 5px grey;	border-radius: 12px"><pre class="syntax">translateY() = translateY( translation-value)</pre></div>
+								
+									<p>
+										Стойността на аргумента на функцията е число, то може да бъде във всяка една от мерните единици за дължина, използвани в CSS(пикслели, сантиметри и други).
+									</p>
+									<p>
+										В <a href="#example15">Пример 15</a> е показано действието на <b><a href="#translateY()">translateY()</a></b>. 
+									</p>
+		<figure id="example15">
+				<div class="row">
+					  <div class="column" style="background-color:#000033;width:60%;">
+							<h2 class="code">CSS</h2>
+					<pre class="code">
+#translatedYSquare
+ {
+  display: inline-block;
+  background: linear-gradient(180deg,#ff8a00,#e52e71);
+  height: 100px;
+  width: 100px;
+  color: white;
+  animation: moveY 3s infinite;
+  animation-direction: alternate;
+ }
+
+ @keyframes moveY 
+  {
+  0% {
+    transform: translateY(0);    
+  }
+  100% {
+    transform: translateY(100px);
+  }
+ }	</pre>
+					  </div>
+					  <div class="column" style="background-color:#000033;width:40%;">
+						<h2 class="code">Пример</h2>
+							<p style="text-align:center;"><img alt="translateY square" class='square'  id='translatedYSquare' src="translateY().png"></p>
+						</div>
+					  </div>
+					
+				<figcaption>Пример 15: Прилагане на translateY().</figcaption>
+				</figure>	
+			
+								
+								<h4 id='translateZ()'>translateZ()</h4>
+									<p>
+										<b>Описание: </b>Приема един аргумент - преместване по оста Z.
+										Функцията премества елемента към или по-далеч от зрителя с определено разстояние, което се подава, като параметър.
+									</p>
+								
+										Синтаксис:
+										<div style="height:2em;margin-left:15%;margin-right:15%;text-align:center;background-color:#000033;width:60%;box-shadow: 10px 10px 5px grey;	border-radius: 12px"><pre class="syntax">translateZ() = translateZ( translation-value)</pre></div>
+								
+									<p>
+										Стойността на аргумента на функцията е число, то може да бъде във всяка една от мерните единици за дължина, използвани в CSS(пикслели, сантиметри и други).
+									</p>
+									<p>
+										В <a href="#example16">Пример 16</a> е показано действието на <b><a href="#translateZ()">translateZ()</a></b>. Идеята за него е взета от <a href="#source2">[2]</a>.
+									</p>
+	<figure id="example16">
+				<div class="row">
+					  <div class="column" style="background-color:#000033;width:60%;">
+							<h2 class="code">CSS</h2>
+					<pre class="code">
+#translatedZSquare
+ {
+  display: inline-block;
+  background: linear-gradient(180deg,#ff8a00,#e52e71);
+  height: 100px;
+  width: 100px;
+  color: white;
+  animation: moveZ 3s infinite;
+  animation-direction: alternate;
+ }
+
+ @keyframes moveZ 
+  {
+  0% {
+    transform: translateZ(0);    
+  }
+  100% {
+    transform: perspective(500px) translateZ(200px);
+  }
+ }</pre>
+					  </div>
+					  <div class="column" style="background-color:#000033;width:40%;">
+						<h2 class="code">Пример</h2>
+							<p style="text-align:center;"><img alt="translateZ square" class='square'  id='translatedZSquare' src="translateZ().png"></p>
+						</div>
+					  </div>
+					
+				<figcaption>Пример 16: Прилагане на translateZ().</figcaption>
+				</figure>	
+								<h4 id='translate3d()'>translate3d()</h4>
+									<p>
+										<b>Описание: </b>При тримерно пространство можем да използваме функцията <b>translate3d()</b>. Използва се за преместване на елемент по oсите X, Y и Z.
+										Първите два аргумента на translate3d() са същите, като при <b><a href="#translate()">translate()</a></b>, използва се и трети аргумент, който указва преместването по оста Z(напред-назад).
+									</p>	
+							
+										Синтаксис:
+										<div style="height:2em;margin-left:10%;text-align:center;background-color:#000033;width:80%;box-shadow: 10px 10px 5px grey;	border-radius: 12px"><pre class="syntax">translate3d() = translate3d( translation-value , translation-value ,translation-value )</pre></div>
+								
+									<p>
+											Стойностите на аргументите на функцията са числа, те могат да бъдат във всяка една от мерните единици за дължина, използвани в CSS(пикслели, сантиметри и други).
+									</p>
+									<p>
+										В <a href="#example17">Пример 17</a> е показано действието на <b><a href="#translate3d()">translate3d()</a></b>. Идеята за него е взета от <a href="#source2">[2]</a>.
+									</p>
+	<figure id="example17">
+				<div class="row">
+					  <div class="column" style="background-color:#000033;width:60%;">
+							<h2 class="code">CSS</h2>
+					<pre class="code">
+ #translated3dSquare
+ {
+  display: inline-block;
+  background: linear-gradient(180deg,#ff8a00,#e52e71);
+  height: 100px;
+  width: 100px;
+  color: white;
+  animation: move3d 3s infinite;
+  animation-direction: alternate;
+ }
+
+ @keyframes move3d 
+ {
+  0% {
+    transform: translate3d(0,0,0);    
+  }
+  100% {
+     transform: perspective(500px);
+     transform: translate3d(50px, 25px,50px);
+  }
+ }</pre>
+					  </div>
+					  <div class="column" style="background-color:#000033;width:40%;">
+						<h2 class="code">Пример</h2>
+							<p>	<img alt="translate3d square" class='square'  id='translated3dSquare' src="translate3d().png"></p>
+						</div>
+					  </div>
+					
+				<figcaption>Пример 17: Прилагане на translate3d().</figcaption>
+				</figure>	
+				
+					<h3 id='skew'>Накланяне</h3>
+							
+								<h4 id='skew()'> skew()</h4>
+									<p>
+										<b>Описание: </b> Функцията се използва за накланяне на елемент. За да си представим по-добре как работи тази функция може да си мислим, че вземаме точки от елемента и ги бутаме и дърпаме в различни посоки въз основа на даден ъгъл. Първият аргумент определя накланянето по оста X, а вторият - по оста Y.
+										Положителна X стойност накланя елемента наляво, отрицателна X стойност го накланя надясно. Положителната Y стойност го накланя надолу, а отрицателната Y стойност го накланя нагоре.<br>
+										<b>skew()</b> е обобщение на <b><a href="#skewX()">skewX()</a></b> и <b><a href="#skewY()">skewY()</a></b>.
+									</p>
+									
+										Синтаксис:
+										<div style="height:2em;margin-left:15%;margin-right:15%;text-align:center;background-color:#000033;width:60%;box-shadow: 10px 10px 5px grey;	border-radius: 12px"><pre class="syntax">skew() = skew( angle [, angle]? )</pre></div>
+										<ul>
+											<li>angle - стойности, представляващи ъглите на накланяне съответно спрямо оста X и оста Y.
+												Ако е подадена само една стойност като аргумент, стойността на втория аргумент по подразбиране е 0.
+												<br> Ъгълът може да бъде представен с всяка от следните мерни единици:
+												<ul>
+													<li>deg - Градуси - в пълен кръг има 360<sup>o</sup></li>
+													<li>grad - Градиани - в пълен кръг има 400 градиана</li>
+													<li>rad - Радиани - 360<sup>o</sup> = 2.π.rad</li>
+													<li>turn - Обороти - в пълен кръг има 1 оборот</li>
+												</ul>
+
+											</li>
+										</ul>
+								
+									<p>
+										В <a href="#example18">Пример 18</a> е показано действието на <b><a href="#skew()">skew()</a></b>. Идеята за него е взета от <a href="#source2">[2]</a>.
+									</p>
+	<figure id="example18">
+				<div class="row">
+					  <div class="column" style="background-color:#000033;width:60%;">
+							<h2 class="code">CSS</h2>
+					<pre class="code">
+ #skewSquare
+ {
+  margin-left:30px;
+  margin-right:30px 
+  display: inline-block;
+  background: linear-gradient(180deg,#ff8a00,#e52e71);
+  height: 100px;
+  width: 100px;
+  color: white;
+}
+
+ @keyframes skew 
+  {
+  0% {
+    transform: skew(15deg,15deg);    
+  }
+  100% {
+    transform: skew(-15deg,-15deg);
+  }
+ }</pre>
+					  </div>
+					  <div class="column" style="background-color:#000033;width:40%;">
+						<h2 class="code">Пример</h2>
+							<p style="text-align:center;">	<img alt="skew square" class='square'  id='skewSquare' src="skew().png"></p>
+						</div>
+					  </div>
+					
+				<figcaption>Пример 18: Прилагане на skew().</figcaption>
+				</figure>	
+						
+								<h4 id='skewX()'>skewX()</h4>
+									<p>
+										<b>Описание: </b>Приема един аргумент - накланяне по оста X.
+										Извършва транформация, която измества всяка точка от елемент с даден ъгъл по оста X.
+									</p>
+									
+										Синтаксис:
+										<div style="height:2em;margin-left:15%;margin-right:15%;text-align:center;background-color:#000033;width:60%;box-shadow: 10px 10px 5px grey;	border-radius: 12px"><pre class="syntax">skewX() = skewX(angle)</pre></div>
+										<ul>
+											<li>angle - стойност, представляваща ъгъла на накланяне.
+												<br> Ъгълът може да бъде представен с всяка от следните мерни единици:
+												<ul>
+													<li>deg - Градуси - в пълен кръг има 360<sup>o</sup></li>
+													<li>grad - Градиани - в пълен кръг има 400 градиана</li>
+													<li>rad - Радиани - 360<sup>o</sup> = 2.π.rad</li>
+													<li>turn - Обороти - в пълен кръг има 1 оборот</li>
+													
+												</ul>
+
+											</li>
+										</ul>
+									
+									<p>
+										В <a href="#example19">Пример 19</a> е показано действието на <b><a href="#skewX()">skewX()</a></b>. Идеята за него е взета от <a href="#source2">[2]</a>.
+									</p>
+	<figure id="example19">
+				<div class="row">
+					  <div class="column" style="background-color:#000033;width:60%;">
+							<h2 class="code">CSS</h2>
+					<pre class="code">
+ #skewXSquare
+ {   
+  margin-left:30px;
+  margin-right:30px
+  display: inline-block;
+  background: linear-gradient(180deg,#ff8a00,#e52e71);
+  height: 100px;
+  width: 100px;
+  color: white;
+ }
+ #skewXSquare
+ {  
+   animation: skewX 3s infinite;
+   animation-direction: alternate;
+ }
+ @keyframes skewX 
+ {
+  0% {
+    transform: skewX(15deg);    
+  }
+  100% {
+    transform: skewX(-15deg);
+  }
+ }</pre>
+					  </div>
+					  <div class="column" style="background-color:#000033;width:40%;">
+						<h2 class="code">Пример</h2>
+							<p style="text-align:center;"><img  alt="skewX square"  class='square'  id='skewXSquare' src="skewX().png"></p>
+						</div>
+					  </div>
+					
+				<figcaption>Пример 19: Прилагане на skewX().</figcaption>
+				</figure>
+								
+								<h4 id='skewY()'>skewY()</h4>
+									<p>
+										<b>Описание: </b>Приема един аргумент - накланяне по оста Y.
+										Извършва транформация, която измества всяка точка от елемент с даден ъгъл по оста Y.
+									</p>
+									
+										Синтаксис:
+										<div style="height:2em;margin-left:15%;margin-right:15%;text-align:center;background-color:#000033;width:60%;box-shadow: 10px 10px 5px grey;	border-radius: 12px"><pre class="syntax">skewY() = skewY(angle)</pre></div>
+										<ul>
+											<li>angle - стойност, представляваща ъгъла на накланяне.
+												<br> Ъгълът може да бъде представен с всяка от следните мерни единици:
+												<ul>
+													<li>deg - Градуси - в пълен кръг има 360<sup>o</sup></li>
+													<li>grad - Градиани - в пълен кръг има 400 градиана</li>
+													<li>rad - Радиани - 360<sup>o</sup> = 2.π.rad</li>
+													<li>turn - Обороти - в пълен кръг има 1 оборот</li>
+													
+												</ul>
+
+											</li>
+										</ul>
+									
+									<p>
+										В <a href="#example20">Пример 20</a> е показано действието на <b><a href="#skewY()">skewY()</a></b>. Идеята за него е взета от <a href="#source2">[2]</a>.
+									</p>
+	<figure id="example20">
+				<div class="row">
+					  <div class="column" style="background-color:#000033;width:60%;">
+							<h2 class="code">CSS</h2>
+					<pre class="code">
+#skewYSquare
+ {
+  margin-left:30px;
+  margin-right:30px
+  display: inline-block;
+  background: linear-gradient(180deg,#ff8a00,#e52e71);
+  height: 100px;
+  width: 100px;
+  color: white;
+ }
+ #skewYSquare
+ {  
+   animation: skewY 3s infinite;
+   animation-direction: alternate;
+ }
+ @keyframes skewY
+ {
+  0% {
+    transform: skewY(15deg);    
+  }
+  100% {
+    transform: skewY(-15deg);
+  }
+}</pre>
+					  </div>
+					  <div class="column" style="background-color:#000033;width:40%;">
+						<h2 class="code">Пример</h2>
+							<p style="text-align:center;"><img  alt="skewY square"  class='square'  id='skewYSquare' src="skewY().png"></p>
+						</div>
+					  </div>
+					
+				<figcaption>Пример 20: Прилагане на skewY().</figcaption>
+				</figure>						
+			<h2 id='anotherProperties'>Допълнителни свойства</h2>	
+		
+						<h3 id='transform-origin'>
+							 transform-origin
+							 </h3>
+							 <p>
+								<b>Описание: </b> Позволява да се променя началната точна на трансформацията. При 2D трансформациите може да се променя по оста X и по оста Y, a при 3D трансформациите е възможна промяна също и по оста Z.
+								
+							 </p>
+							  
+								Синтаксис:
+								<div style="height:2em;margin-left:15%;margin-right:15%;text-align:center;background-color:#000033;width:60%;box-shadow: 10px 10px 5px grey;	border-radius: 12px"><pre class="syntax"> transform-origin: x-axis y-axis z-axis</pre></div>
+								<p> Аргументите могат да приемат следните стойности:</p>
+								<ul>
+										<li>
+											числа, те може да бъдат във всяка една от мерните единици за дължина, използвани в CSS(пикслели, проценти и други).
+										</li>
+										<li>
+											ключовите думи: top, left, right, bottom, и center.
+										</li>
+								</ul>
+							 
+							 <p> 
+								В <a href="#example21">Пример 21</a> се илюстрира действието на <b><a href="#transform-origin">transform-origin</a></b>. Идеята за него е взета от <a href='#source3'>[3]</a>.
+							 </p>
+	<figure id="example21">
+				<div class="row">
+					  <div class="column" style="background-color:#000033;width:40%;height:450px;">
+							<h2 class="code">CSS</h2>
+					<pre class="code">
+ #transform-origin1
+{
+  transform-origin: bottom right;
+}
+
+#transform-origin2
+{
+  transform-origin: 10px 70px;
+}
+
+#transform-origin3
+{
+  transform-origin: center;
+}
+#transform-origin4
+{
+  transform-origin: left right;
+}
+</pre>
+					   </div>
+					  <div class="column" style="background-color:#000033;width:60%;height:450px;">
+						<h2 class="code">Пример</h2>
+							<div class="rowImage">
+							  <div style="margin-left:10px; width: 22%; padding: 5px;" class="columnImage">
+								<div   id="transform-origin1" class='boxesTransform-origin'>bottom right</div>
+								<div id="transform-origin1-border"></div>
+							  </div>
+							   <div style="margin-left:10px;width: 22%;padding: 5px;" class="columnImage">
+								<div id="transform-origin2" class='boxesTransform-origin'>10px 70px</div>
+								<div id="transform-origin2-border"></div>
+							  </div>
+							   <div style="margin-left:10px;width: 22%;padding: 5px;" class="columnImage">
+								<div id="transform-origin3" class='boxesTransform-origin'>center</div>
+								<div id="transform-origin3-border"></div>
+							  </div>
+							  <div style="margin-left:10px;width: 22%;padding: 5px;" class="columnImage">
+								<div id="transform-origin4" class='boxesTransform-origin'>top<br>left</div>
+								<div id="transform-origin4-border"></div>
+							  </div>			
+						  </div>
+						  <div class="rowImage">
+							<div  id="transform-originButtonBox" class='buttonBox'> <button id="buttonsTransform-origin" class="buttons">Завъртане на фигурите</button></div>
+						  </div>
+						</div>
+					 </div>
+					
+				<figcaption>Пример 21: Прилагане на transform-origin().</figcaption>
+				</figure>
+		
+						<h3 id='transform-style'>
+							 transform-style
+							</h3>
+							 <p>
+								<b>Описание: </b> Това свойство определя дали децата на елемент ще бъдат позиционирани в 3D пространството или ще лежат в равнината на самия елемент(ще бъдат насложени едно върху друго). 
+							 </p>
+							 
+								Синтаксис:
+								<div style="height:2em;margin-left:15%;margin-right:15%;text-align:center;background-color:#000033;width:60%;box-shadow: 10px 10px 5px grey;border-radius: 12px"><pre class="syntax">transform-style: value</pre></div>
+								<p> value може да приема следните стойности:</p>
+								<ul>
+										<li>
+											preserve-3d - означава, че децата на елемента ще бъдат позиционирани в 3D пространството.
+										</li>
+										<li>
+											flat - означава, че децата на елемента ще лежат в равнината на самия елемент.
+										</li>
+								</ul>
+							 <p> 
+								В <a href="#example22">Пример 22</a> се илюстрира действието на <b><a href="#transform-style">transform-style</a></b>. Идеята за него е взета от <a href="#source4">[4]</a>.
+								Чрез натискане на бутоните се променя значението на свойството.
+							 </p>
+							 
+<figure id="example22">
+				<div class="row">
+					  <div class="column" style="background-color:#000033;width:40%;">
+							<h2 class="code">CSS</h2>
+					<pre class="code">
+ #transform-origin1
+{
+  transform-origin: bottom right;
+}
+
+#transform-origin2
+{
+  transform-origin: 10px 70px;
+}
+
+#transform-origin3
+{
+  transform-origin: center;
+}
+#transform-origin4
+{
+  transform-origin: top left;
+}
+</pre>
+					   </div>
+					  <div class="column" style="background-color:#000033;width:60%;">
+						<h2 class="code">Пример</h2>
+							<div class="rowImage" style="margin-left:10%;margin-bottom:60%">
+								<div id="transform-styleBox">
+									<div id="transform-styleParent">Елемент-Родител
+										<div id="transform-styleChildren">Елемент-Дете</div>
+									</div>
+								</div>			
+						  </div>
+						  <div class="rowImage" style="margin-left:10%">
+								<div  class='buttonBox'> 
+									<button   onclick="transformStyle3d()"  class="buttons" id="transformStyle-3d">
+										transform-style: preserve-3d;
+									</button>
+								</div>
+							</div>
+							<div class="rowImage" style="margin-left:10%;">
+							<div  class='buttonBox'> 
+								<button  onclick="transformStyleFlat()"  class="buttons" id="transformStyle-flat">
+									transform-style: flat;	
+								</button>
+							</div>
+						  </div>
+						  </div>
+						</div>
+				
+				<figcaption>Пример 22: Прилагане на transform-style().</figcaption>
+				</figure>
+				<h2 id='animationInAction'>Анимация в действие</h2>	
+	<p>
+		В <a href='#example23'>Пример 23</a> е показана анимация, която е реализирана, чрез използването на трансформации. Примерът показва, че трансформациите в CSS могат да доведат до ефектни резултати, стига да са съчетани правилно и да има ясна концепция за използването им. Информацията за примера е взета от <a href='#source1'>[1]</a>.
+	</p>
+	<figure id="example23">	
+		<div id="outerspace">
+			<div class="rocket">
+			<div><!-- rocket --></div>
+			.rocket
+			</div>#outerspace
+		</div>
+		<figcaption>Пример 23: Анимация чрез използване на трансформации.</figcaption>
+	</figure>
+										
+			<ul id='exampleRacket'>
+				<li id="showCodeItem">	<b>Покажи кода</b></li>	
+				<li id="codeRacketExample"> 
+					<div class="row">
+					  <div class="column" style="background-color:#000033;width:60%;height:720px;">
+							<h2 class="code">CSS</h2>
+	<pre class="code">
+	#outerspace {
+	position: relative;
+	height: 400px;
+	background: #0c0440 url(outerspace.jpg);
+	color: #fff;
+	}
+	div.rocket {
+	position: absolute;
+	bottom: 10px;
+	left: 20px;
+	-webkit-transition: 3s ease-in;
+	-moz-transition: 3s ease-in;
+	-o-transition: 3s ease-in;
+	transition: 3s ease-in;
+	}
+	div.rocket div {
+	width: 92px;
+	height: 215px;
+	background: url(rocket.gif) no-repeat;
+	-webkit-transition: 2s ease-in-out;
+	-moz-transition: 2s ease-in-out;
+	-o-transition: 2s ease-in-out;
+  	transition: 2s ease-in-out;
+	}
+	#outerspace:hover div.rocket {
+	-webkit-transform: translate(540px,-200px);
+	-moz-transform: translate(540px,-200px);
+	-o-transform: translate(540px,-200px);
+	-ms-transform: translate(540px,-200px);
+	transform: translate(540px,-200px);
+	}
+	#outerspace:hover div.rocket div {
+	-webkit-transform: rotate(70deg);
+	-moz-transform: rotate(70deg);
+	-o-transform: rotate(70deg);
+	-ms-transform: rotate(70deg);
+	}
+	</pre>
+					  </div>
+					  <div class="column" style="background-color:#000033;width:40%;height:720px;">
+						<h2 class="code">HTML</h2>
+<pre class="code">				
+&lt;div id="outerspace"&gt;
+	&lt;div class="rocket"&gt;
+		.rocket
+	&lt;/div&gt; #outerspace
+&lt;/div&gt;
+</pre>
+						</div>
+					  </div>
+
+				</li>
+			</ul>
+		<h2>Използвани източници</h2>
+		<div id="sources">
+								<div id='source1' class="sourceBox">
+									[1] CSS: Animation Using CSS Transforms, <a href="http://www.the-art-of-web.com/css/css-animation/#.UVKerzaexNk" target='_blank'>http://www.the-art-of-web.com/css/css-animation/#.UVKerzaexNk</a>
+								</div>
+								
+								<div id='source2'  class="sourceBox">
+									[2] Transform <a href="https://css-tricks.com/almanac/properties/t/transform/" target='_blank'>https://css-tricks.com/almanac/properties/t/transform/</a>, автор: Sara Cope
+								</div>
+								<div id='source3' class="sourceBox">
+									[3] transform-origin<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin" target='_blank'>https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin</a>
+								</div>
+								<div id='source4' class="sourceBox">
+									[4] transform-style,<a href="https://www.w3schools.com/cssref/css3_pr_transform-style.asp" target='_blank'>https://www.w3schools.com/cssref/css3_pr_transform-style.asp </a>
+								</div>
+								<div id='source5' class="sourceBox">
+									[5] CSS Animation <a href="https://webkit.org/blog/138/css-animation/" target='_blank'>https://webkit.org/blog/138/css-animation/ </a>
+								</div>
+								
+								
+								
+		</div>			
+	
+	</div>
+		<div id='footer'>
+			Автор: Румяна Сиракова, ФН:81595, КН 2, Група 7. 
+		</div>
+		 </div>
+	
+
+</body>
+</html>

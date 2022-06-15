@@ -1,0 +1,4 @@
+Реферат на тема АНИМАЦИИ С CSS С ИЗПОЛЗВАНЕ НА ТРАНСФОРМАЦИИ, разработен от Румяна Сиракова, ФН:81595, група 7, специалност КН поток 2.
+Презентацията представя същността на анимациите с трансформации в CSS. Разгледани са четирите основни вида трансформации – мащабиране, завъртане, преместване и накланяне. Представени са свойствата transform-origin и transform-style. Представени са свойствата transition-property,transition-duration,transition-timing-function.
+Ключови думи: CSS,transform,scale,rotate,tanslate,skew,transform-origin,transform-style,transition,transition-property,transition-duration,transition-timing-function.
+Разгледани примери: Примери за основните видове трансформации - rotate(), scale(), translate(), skew(). Пример за използването на transition. Пример демонстриращ анимациите с трансформации в CSS.
